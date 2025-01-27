@@ -10,19 +10,18 @@ const App = () => {
   const handleTranslate = async (e) => {
     e.preventDefault();
     try {
-      // Determine backend URL dynamically
       const baseURL =
         window.location.hostname === "localhost"
-          ? "/api" // Proxy used in local development
-          : "https://eng-to-jap.onrender.com/api"; // Production backend URL
+          ? "http://127.0.0.1:5000/api" // Local backend
+          : "https://eng-to-jap.onrender.com/api"; // Production backend
 
       const response = await axios.post(`${baseURL}/translate`, {
         english_text: englishText,
       });
       console.log("API Response:", response.data);
-      setJapaneseText(response.data.japanese_text);
-      setRomanjiText(response.data.romanji_text);
-      setAudioPath(response.data.audio_path);
+      setJapaneseText(response.data.data.japanese_text);
+      setRomanjiText(response.data.data.romanji_text);
+      setAudioPath(response.data.data.audio_path);
     } catch (error) {
       console.error("Error translating text:", error);
       alert("Failed to translate. Please try again.");
@@ -31,10 +30,7 @@ const App = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>
-        <img src="/text.png" alt="text" className="textimg" />
-        English to Japanese Translator
-      </h1>
+      <h1>English to Japanese Translator</h1>
       <form onSubmit={handleTranslate}>
         <textarea
           value={englishText}
@@ -49,15 +45,9 @@ const App = () => {
       {japaneseText && (
         <div style={{ marginTop: "20px" }}>
           <h2>Translation:</h2>
-          <p>
-            <strong>Japanese:</strong> {japaneseText}
-          </p>
-          <p>
-            <strong>Romanji:</strong> {romanjiText}
-          </p>
-          <p>
-            <strong>Audio:</strong>
-          </p>
+          <p><strong>Japanese:</strong> {japaneseText}</p>
+          <p><strong>Romanji:</strong> {romanjiText}</p>
+          <p><strong>Audio:</strong></p>
           <audio controls>
             <source src={`${audioPath}?t=${Date.now()}`} type="audio/mp3" />
             Your browser does not support the audio element.

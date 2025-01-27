@@ -5,7 +5,7 @@ import logging
 import os
 
 app = Flask(__name__)
-CORS(app)  # Allow requests from React frontend
+CORS(app, origins=["https://eng-to-jap.vercel.app", "http://localhost:5173"])  # Add Vercel and local domains
 logging.basicConfig(level=logging.DEBUG)
 
 @app.route("/api/translate", methods=["POST"])
@@ -22,7 +22,6 @@ def translate():
         romanji_text = convert_to_romanji(japanese_text)
         generate_audio(romanji_text)
         audio_path = url_for("get_audio", _external=True)  # Generate dynamic URL
-        logging.debug(f"Japanese: {japanese_text}, Romanji: {romanji_text}, Audio: {audio_path}")
     except Exception as e:
         logging.error(f"Error during translation or audio generation: {e}")
         return jsonify({"success": False, "error": "Internal server error"}), 500
@@ -38,10 +37,8 @@ def translate():
 
 @app.route("/static/output.mp3", methods=["GET"])
 def get_audio():
-    logging.debug("Audio file requested.")
     audio_path = "static/output.mp3"
     if not os.path.exists(audio_path):
-        logging.error("Audio file not found!")
         return jsonify({"success": False, "error": "Audio file not found"}), 404
     return send_file(audio_path, mimetype="audio/mpeg", as_attachment=False)
 
