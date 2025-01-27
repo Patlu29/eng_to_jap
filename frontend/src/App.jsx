@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-
 const App = () => {
   const [englishText, setEnglishText] = useState("");
   const [japaneseText, setJapaneseText] = useState("");
@@ -11,7 +10,13 @@ const App = () => {
   const handleTranslate = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/translate", {
+      // Determine backend URL dynamically
+      const baseURL =
+        window.location.hostname === "localhost"
+          ? "/api" // Proxy used in local development
+          : "https://eng-to-jap.onrender.com/api"; // Production backend URL
+
+      const response = await axios.post(`${baseURL}/translate`, {
         english_text: englishText,
       });
       console.log("API Response:", response.data);
@@ -24,11 +29,12 @@ const App = () => {
     }
   };
 
-  
-
   return (
     <div style={{ padding: "20px" }}>
-      <h1><img src="/text.png" alt="text" className="textimg"/>English to Japanese Translator</h1>
+      <h1>
+        <img src="/text.png" alt="text" className="textimg" />
+        English to Japanese Translator
+      </h1>
       <form onSubmit={handleTranslate}>
         <textarea
           value={englishText}
@@ -49,7 +55,9 @@ const App = () => {
           <p>
             <strong>Romanji:</strong> {romanjiText}
           </p>
-          <p><strong>Audio:</strong></p>
+          <p>
+            <strong>Audio:</strong>
+          </p>
           <audio controls>
             <source src={`${audioPath}?t=${Date.now()}`} type="audio/mp3" />
             Your browser does not support the audio element.
