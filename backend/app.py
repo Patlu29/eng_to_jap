@@ -5,7 +5,7 @@ import logging
 import os
 
 app = Flask(__name__)
-CORS(app, origins=["https://eng-to-jap.vercel.app", "http://localhost:5173"])  # Add Vercel and local domains
+CORS(app, origins=["https://eng-to-jap.vercel.app", "http://localhost:5173"])  # Allow Vercel and local origins
 logging.basicConfig(level=logging.DEBUG)
 
 @app.route("/api/translate", methods=["POST"])
@@ -21,7 +21,7 @@ def translate():
         japanese_text = translate_to_japanese(english_text)
         romanji_text = convert_to_romanji(japanese_text)
         generate_audio(romanji_text)
-        audio_path = url_for("get_audio", _external=True)  # Generate dynamic URL
+        audio_path = url_for("get_audio", _external=True)  # Dynamic audio URL
     except Exception as e:
         logging.error(f"Error during translation or audio generation: {e}")
         return jsonify({"success": False, "error": "Internal server error"}), 500
