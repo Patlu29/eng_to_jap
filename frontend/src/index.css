@@ -1,0 +1,122 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f2f1f7; /* Softer background */
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+h1 {
+  text-align: center;
+  color: #2d046e; /* Rich purple for the header */
+  font-size: 2.5rem;
+  margin-top: 20px;
+}
+h2, p {
+  text-align: center;
+  color: #2d046e; /* Rich purple for the header */
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+
+textarea {
+  width: 90%; /* Adjust width for better alignment */
+  max-width: 800px; /* Restrict max width */
+  padding: 15px;
+  margin: 20px auto; /* Center align with margin */
+  display: block;
+  font-size: 1rem;
+  border: 2px solid #2d046e; /* Darker purple */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: #ffffff; /* White background for clarity */
+  color: #333;
+}
+
+button {
+  display: block;
+  margin: 0 auto; /* Center align button */
+  padding: 12px 20px;
+  background-color: #2d046e; /* Matches header color */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #4b12a3; /* Slightly lighter purple */
+  transform: translateY(-2px); /* Subtle hover effect */
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+audio {
+  display: block;
+  margin: 20px auto;
+  width: 90%; /* Adjusted to take most of the screen width */
+  max-width: 800px;
+}
+
+.textimg {
+  width: 3rem;
+  height: 2.5rem;
+  margin-bottom: -5px;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For tablets and medium-sized screens */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem; /* Reduce font size for smaller screens */
+  }
+
+  h2, p {
+    font-size: 1.25rem;
+  }
+
+  textarea {
+    font-size: 0.9rem; /* Slightly smaller text for better fit */
+  }
+
+  button {
+    padding: 10px 15px; /* Reduce padding */
+    font-size: 0.9rem;
+  }
+
+  audio {
+    width: 80%; /* Adjust audio player width */
+  }
+}
+
+/* For mobile and small screens */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem; /* Further reduce font size */
+  }
+
+  h2, p {
+    font-size: 1.1rem;
+  }
+
+  textarea {
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+
+  button {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  audio {
+    width: 90%; /* Full width for small devices */
+  }
+}
