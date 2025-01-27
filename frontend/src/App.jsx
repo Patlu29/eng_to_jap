@@ -11,7 +11,7 @@ const App = () => {
   const handleTranslate = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://eng-to-qt5mrnvr1-prakashrajan2908-gmailcoms-projects.vercel.app/", {
+      const response = await axios.post("/api/translate", {
         english_text: englishText,
       });
       console.log("API Response:", response.data);
@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1><img src="../public/text.png" alt="text" className="textimg"/>English to Japanese Translator</h1>
+      <h1><img src="/text.png" alt="text" className="textimg"/>English to Japanese Translator</h1>
       <form onSubmit={handleTranslate}>
         <textarea
           value={englishText}

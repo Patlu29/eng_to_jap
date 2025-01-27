@@ -7,3 +7,4 @@ gtts
 SentencePiece
 torch
 gunicorn
+sacremoses
