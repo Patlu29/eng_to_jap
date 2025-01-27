@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1><img src="../public/text.jpg" alt="text" className="textimg"/>English to Japanese Translator</h1>
+      <h1><img src="../public/text.png" alt="text" className="textimg"/>English to Japanese Translator</h1>
       <form onSubmit={handleTranslate}>
         <textarea
           value={englishText}
