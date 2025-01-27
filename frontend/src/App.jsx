@@ -11,7 +11,7 @@ const App = () => {
   const handleTranslate = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/translate", {
+      const response = await axios.post("https://eng-to-qt5mrnvr1-prakashrajan2908-gmailcoms-projects.vercel.app/", {
         english_text: englishText,
       });
       console.log("API Response:", response.data);
