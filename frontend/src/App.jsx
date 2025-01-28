@@ -33,7 +33,7 @@ const App = () => {
         <textarea
           value={englishText}
           onChange={(e) => setEnglishText(e.target.value)}
-          placeholder="Enter English text here..."
+          placeholder="Enter English text here...Enter more then 5 word for better translation(max 500 characters)"
           rows="5"
           cols="50"
         />
