@@ -89,5 +89,36 @@ def get_audio(translation_id):
         "Content-Disposition": f"attachment; filename=output_{translation_id}.mp3"
     })
 
+# **New API Endpoint**: Fetch previous translations
+@app.route("/api/translations", methods=["GET"])
+def get_translations():
+    english_text = request.args.get("english_text")  # Optional query parameter
+    if english_text:
+        # Filter translations by English text
+        translation = Translation.query.filter_by(english_text=english_text.strip()).first()
+        if not translation:
+            return jsonify({"error": "Translation not found"}), 404
+        return jsonify({
+            "id": translation.id,
+            "english_text": translation.english_text,
+            "japanese_text": translation.japanese_text,
+            "romanji_text": translation.romanji_text,
+            "audio_path": f"{request.host_url}api/audio/{translation.id}"
+        })
+
+    # If no query parameter, return all translations
+    translations = Translation.query.all()
+    results = [
+        {
+            "id": translation.id,
+            "english_text": translation.english_text,
+            "japanese_text": translation.japanese_text,
+            "romanji_text": translation.romanji_text,
+            "audio_path": f"{request.host_url}api/audio/{translation.id}"
+        }
+        for translation in translations
+    ]
+    return jsonify(results)
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
