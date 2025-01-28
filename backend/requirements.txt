@@ -5,3 +5,4 @@ pykakasi==2.3.0
 transformers==4.48.1
 torch==2.5.1
 gunicorn==23.0.0
+sentencepiece==0.1.99
