@@ -54,6 +54,7 @@ const App = () => {
             <source src={`${audioPath}?t=${Date.now()}`} type="audio/mp3" />
             Your browser does not support the audio element.
           </audio>
+          <h5>For another translation refresh the page.</h5>
         </div>
       )}
     </div>
