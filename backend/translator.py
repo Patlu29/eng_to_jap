@@ -1,7 +1,7 @@
 from transformers import MarianMTModel, MarianTokenizer
 import pykakasi
 from gtts import gTTS
-import os
+import io
 
 # Load the pre-trained model and tokenizer
 model_name = "Patlu29/eng-jap_trans"
@@ -28,17 +28,12 @@ def convert_to_romanji(japanese_text):
     return converter.do(japanese_text)
 
 def generate_audio(romanji_text):
-    """Generate audio from Romanji text and delete the previous audio file."""
-    audio_file = "static/output.mp3"
-    # Delete the old audio file if it exists
-    if os.path.exists(audio_file):
-        os.remove(audio_file)
-    
-    # Generate the new audio file
+    """Generate audio from Romanji text and return it as binary data."""
+    audio_buffer = io.BytesIO()
     tts = gTTS(text=romanji_text, lang="ja")
     try:
-        tts.save(audio_file)
-        print(f"New audio saved at {audio_file}")
+        tts.write_to_fp(audio_buffer)  # Write audio data to the buffer
     except Exception as e:
-        print(f"Error generating audio: {e}")
-    return audio_file
+        raise Exception(f"Error generating audio: {e}")
+    audio_buffer.seek(0)  # Reset buffer pointer
+    return audio_buffer.read()  # Return audio data as binary
