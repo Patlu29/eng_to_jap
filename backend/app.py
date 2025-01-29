@@ -40,6 +40,7 @@ def index(filename):
 def translate():
     data = request.json
     english_text = data.get("english_text", "").strip()
+    english_text = english_text.lower()  # Convert to lowercase for better matching
     if not english_text:
         return jsonify({"error": "No text provided"}), 400
     
