@@ -50,11 +50,11 @@ Prerequisites:
 
 - Install dependencies
 
-npm install
+    npm install
 
 - Run React Frontend
 
-npm run dev
+    npm run dev
 
 Frontend will start on http://localhost:5173
 
@@ -74,7 +74,7 @@ Frontend will start on http://localhost:5173
 {
   "japanese_text": "こんにちは、お元気ですか？",
   "romanji_text": "Konnichiwa, ogenki desu ka?",
-  "audio_path": "https://your-backend-url/static/audio.mp3"
+  "audio_path": "http://localhost:5000/static/output.mp3"
 }
 
 ➤ GET /api/translations
@@ -88,7 +88,7 @@ Response:
   "english_text": "Hello, how are you?",
   "japanese_text": "こんにちは、お元気ですか？",
   "romanji_text": "Konnichiwa, ogenki desu ka?",
-  "audio_path": "https://your-backend-url/static/audio_1.mp3"
+  "audio_path": "http://localhost:5000/static/audio.mp3/1"
 }
 
 
@@ -105,7 +105,7 @@ Response:
 4. Set environment variables if needed
 
 
-#Tech Stack
+# Tech Stack
 
 - Frontend: React (Vite), Axios
 
